@@ -1,5 +1,10 @@
 <?php
 include "config.php";
+require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 session_start();
 
 // Enable error reporting for debugging
@@ -28,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Check if payment_id exists
-    $payment_status = empty($payment_id) ? 'Failed' : 'Paid'; // Corrected
-    $order_status = empty($payment_id) ? 'Cancelled' : 'Pending'; // Corrected
+    $payment_status = empty($payment_id) ? 'Failed' : 'Paid';
+    $order_status = empty($payment_id) ? 'Cancelled' : 'Pending';
 
     // Debugging logs
     error_log("Payment ID: " . $payment_id);
@@ -46,11 +51,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("issssidsis", $user_id, $name, $address, $email, $productName, $quantity, $amount, $payment_id, $payment_status, $order_status);
 
     if ($stmt->execute()) {
+        $order_id = $stmt->insert_id; // Get the last inserted order ID
+
         // If payment is successful, clear the cart
         if ($payment_status === 'Paid') {
             $deleteCart = $conn->prepare("DELETE FROM cart WHERE u_id = ?");
             $deleteCart->bind_param("i", $user_id);
             $deleteCart->execute();
+        }
+
+        // Send email to user with order details
+        $mail = new PHPMailer(true);
+        try {
+            // Server settings
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com'; // Use Gmail's SMTP server
+            $mail->SMTPAuth = true;
+            $mail->Username = 'demowork10001@gmail.com'; // Replace with your email
+            $mail->Password = 'ahzkmvqzvvmhklok'; // Replace with your email password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            // Recipients
+            $mail->setFrom('demowork10001@gmail.com', 'E-commerce Website');
+            $mail->addAddress($email, $name); // Add user's email address here
+
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = 'Order Confirmation - Payment Successful';
+            $mail->Body = "
+                <h2>Thank you for your purchase, $name!</h2>
+                <p>Your payment has been successfully processed. Here are your order details:</p>
+                <ul>
+                    <li><strong>Order ID:</strong> $order_id</li>
+                    <li><strong>Payment ID:</strong> $payment_id</li>
+                    <li><strong>Amount:</strong> ₹" . number_format($amount, 2) . "</li>
+                    <li><strong>Address:</strong> $address</li>
+                    <li><strong>Email:</strong> $email</li>
+                    <li><strong>Product:</strong> $productName</li>
+                    <li><strong>Quantity:</strong> $quantity</li>
+                </ul>
+                <p>Thank you for shopping with us!</p>";
+
+            $mail->send();
+            error_log("Success: Email sent to user");
+        } catch (Exception $e) {
+            error_log("Error: Email could not be sent. Mailer Error: {$mail->ErrorInfo}");
         }
 
         echo "success";
