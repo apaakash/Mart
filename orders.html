@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <style>
+        body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: #f0f8ff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+header p {
+    margin: 0;
+    color: #333;
+}
+
+.order-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.product-details {
+    display: flex;
+    align-items: center;
+}
+
+.product-info {
+    margin-right: 20px;
+}
+
+.product-info h2 {
+    margin: 0 0 5px 0;
+}
+
+.product-info p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.product-info .price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.order-status {
+    flex-shrink: 0;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.status-icon {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.status-icon.confirmed {
+    background-color: #4CAF50;
+}
+
+.status-icon.delivered {
+    background-color: #2196F3;
+}
+
+.see-updates {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.shipping-details, .price-details {
+    margin-bottom: 20px;
+}
+
+.shipping-details h2, .price-details h2 {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.price-details .price-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.price-details .total {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.upi {
+    text-align: right;
+    color: #777;
+}
+
+/* Animations */
+.status-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.status-item:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <p>Raja Prajapati shared this order with you.</p>
+        </header>
+
+        <section class="order-summary">
+            <div class="product-details">
+                <div class="product-info">
+                    <h2>Dollar Men Top Thermal</h2>
+                    <p>M. Brown</p>
+                    <p>Seller: Dollarbigboss</p>
+                    <p class="price">₹249</p>
+                </div>
+                <img src="thermal_image.jpg" alt="Dollar Men Top Thermal"> 
+            </div>
+
+            <div class="order-status">
+                <div class="status-item">
+                    <div class="status-icon confirmed"></div>
+                    <p>Order Confirmed, Dec 03, 2023</p>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon delivered"></div>
+                    <p>Delivered, Dec 09, 2023</p>
+                </div>
+                <a href="#" class="see-updates">See All Updates ></a>
+            </div>
+        </section>
+
+        <section class="shipping-details">
+            <h2>Shipping Details</h2>
+            <p><strong>Upendra Singh</strong></p>
+            <p>K.C.power Tracks s.no.185/1/1 plot no.7</p>
+            <p>dokmardi amli silvassa D.N.H</p>
+            <p>Aakash marble dokmardi</p>
+            <p>Alok City</p>
+            <p>Dadra & Nagar Haveli & Daman & Diu - 396230</p>
+            <p>Phone number: 8401429141, 9601387350</p>
+        </section>
+
+        <section class="price-details">
+            <h2>Price Details</h2>
+            <div class="price-item">
+                <p>List price</p>
+                <p>₹499</p>
+            </div>
+            <div class="price-item">
+                <p>Selling price</p>
+                <p>₹424</p>
+            </div>
+            <div class="price-item">
+                <p>Extra Discount</p>
+                <p>- ₹175</p>
+            </div>
+            <div class="price-item">
+                <p>Special Price</p>
+                <p>₹249</p>
+            </div>
+            <div class="price-item">
+                <p>Delivery Charge</p>
+                <p>₹40 Free</p>
+            </div>
+            <div class="price-item total">
+                <p><strong>Total Amount</strong></p>
+                <p><strong>₹249</strong></p>
+            </div>
+            <p class="upi">UPI: ₹249.0</p>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            background-color: #2874f0;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .grocery {
+            font-size: 1.1em;
+        }
+        
+        .content {
+            display: flex;
+            padding: 20px;
+        }
+        
+        .left-section {
+            flex: 2;
+            padding-right: 20px;
+        }
+        
+        .right-section {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        
+        .delivery-address {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .delivery-address a {
+            color: #2874f0;
+            text-decoration: none;
+        }
+        
+        .home {
+            background-color: #f0f0f0;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+        
+        .product {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .product-image img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-right: 20px;
+        }
+        
+        .product-details {
+            flex: 1;
+        }
+        
+        .product-price {
+            margin-bottom: 10px;
+        }
+        
+        .current-price {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            margin-right: 10px;
+        }
+        
+        .discount {
+            color: green;
+            margin-right: 10px;
+        }
+        
+        .offer {
+            background-color: #e0f2fe;
+            color: #1e88e5;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #ddd;
+        }
+        
+        .quantity {
+            margin: 0 10px;
+            font-size: 1.2em;
+        }
+        
+        .continue-btn {
+            background-color: #ff9f00;
+            color: #fff;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .continue-btn:hover {
+            background-color: #ffb320;
+            transform: scale(1.02);
+        }
+        
+        .price-details {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .price-header {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .discount-value {
+            color: green;
+        }
+        
+        .free {
+            color: green;
+        }
+        
+        .total-amount {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        
+        .savings {
+            color: green;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .footer {
+            display: flex;
+            align-items: center;
+            font-size: 0.9em;
+            color: #555;
+        }
+        
+        .footer img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Flipkart</div>
+            <div class="grocery">Grocery (1)</div>
+        </header>
+        <div class="content">
+            <div class="left-section">
+                <div class="delivery-address">
+                    Deliver to: Raja, 396230 <span class="home">HOME</span> <a href="#">Change</a>
+                    <p>M/S. SIDDHI VINAYAK POLYESTER PLOT NO. 17, SURVEY N...</p>
+                </div>
+                <div class="product">
+                    <div class="product-image">
+                        <img src="dove_soap.jpg" alt="Dove Cream Beauty Bathing Bar">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-name">DOVE Cream Beauty Bathing Bar For 24 Hour...</div>
+                        <div class="product-quantity">8 x 125 g</div>
+                        <div class="product-price">
+                            <span class="current-price">₹589</span>
+                            <span class="original-price">₹896</span>
+                            <span class="discount">₹307 Off</span>
+                            <span class="offer">1 offer</span>
+                        </div>
+                        <div class="quantity-control">
+                            <button class="quantity-btn">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="continue-btn">CONTINUE</button>
+            </div>
+            <div class="right-section">
+                <div class="price-details">
+                    <div class="price-header">PRICE DETAILS</div>
+                    <div class="price-item"><span>MRP (1 item)</span> <span>₹896</span></div>
+                    <div class="price-item"><span>Product Discount</span> <span class="discount-value">- ₹307</span></div>
+                    <div class="price-item"><span>Delivery Fee</span> <span class="free">₹50 Free</span></div>
+                    <div class="total-amount"><span>Total Amount</span> <span>₹589</span></div>
+                    <div class="savings">You will save ₹357 on this order</div>
+                </div>
+                <div class="footer">
+                    <img src="tick_mark.png" alt="Tick Mark">
+                    Safe and Secure Payments. Easy returns. 100% Authentic products.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

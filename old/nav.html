@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Website with Register Popup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">My Website</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <button class="register-btn" onclick="openRegister()">Register</button>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="content">
+        <h1>Welcome to My Simple Website</h1>
+        <p>Click the Register button in the navbar to open the form.</p>
+    </div>
+
+    <!-- Include Register Modal -->
+    <div id="registerContainer"></div>
+
+    <script>
+        // Load Register Modal
+        function loadRegister() {
+            fetch("register.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("registerContainer").innerHTML = data;
+                });
+        }
+
+        // Open Register Modal
+        function openRegister() {
+            document.getElementById("registerModal").style.display = "flex";
+        }
+
+        // Close Register Modal
+        function closeRegister() {
+            document.getElementById("registerModal").style.display = "none";
+        }
+
+        // Load the register form when the page loads
+        window.onload = loadRegister;
+    </script>
+</body>
+
+</html>
